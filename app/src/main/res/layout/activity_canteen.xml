@@ -4,27 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-
+    tools:context=".Canteen">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button"
+        <Spinner
+            android:id="@+id/spinnerSubject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Меню"
-            tools:layout_editor_absoluteX="210dp"
-            tools:layout_editor_absoluteY="157dp" />
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/button2"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Корзина" />
+            android:layout_height="match_parent"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
