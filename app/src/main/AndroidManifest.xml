@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Canteen" />
         <activity android:name=".Dish" />
-        <activity android:name=".Basket"></activity>
+        <activity android:name=".Basket" />
+        <activity android:name=".HS"></activity>
     </application>
 
 </manifest>

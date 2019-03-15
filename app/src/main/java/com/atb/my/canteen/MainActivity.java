@@ -12,14 +12,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button menuTest = findViewById(R.id.button);
-        menuTest.setOnClickListener(new View.OnClickListener() {
+
+        Button hs1 = findViewById(R.id.button8);
+        hs1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Canteen.class);
+                Intent intent = new Intent(MainActivity.this, HS.class);
+                intent.putExtra("Сanteen", "1");
                 startActivity(intent);
+                // здесь прописать передачу столовой
             }
         });
+        Button hs2 = findViewById(R.id.button9);
+        hs2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HS.class);
+                intent.putExtra("Сanteen", "2");
+                startActivity(intent);
+
+                // здесь прописать передачу столовой
+            }
+        });
+        Button hs3 = findViewById(R.id.button10);
+        hs3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HS.class);
+                intent.putExtra("Сanteen", "3");
+                startActivity(intent);
+                // здесь прописать передачу столовой
+            }
+        });
+
 
         Button bascket = findViewById(R.id.button2);
         bascket.setOnClickListener(new View.OnClickListener() {

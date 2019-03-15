@@ -4,38 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-
+    tools:context=".HS">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Корзина" />
+            android:text="Понедельник"
+            tools:layout_editor_absoluteX="210dp"
+            tools:layout_editor_absoluteY="157dp" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Столовая МГТУ имени Бумана" />
+            android:text="Вторник" />
 
         <Button
-            android:id="@+id/button9"
+            android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Столовая МФТИ" />
+            android:text="Среда" />
 
         <Button
-            android:id="@+id/button10"
+            android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Столовая НИЯУ МИФИ" />
+            android:text="Четверг" />
 
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Пятница" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Суббота" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
