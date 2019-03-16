@@ -2,9 +2,11 @@ package com.atb.my.canteen;
 
 import android.content.Context;
 
-import java.util.ArrayList;
-
 public class ForRecycleDish {
+    /**
+     * класс данных о блюде (нужен для RecycleView)
+     */
+
     private String name;
     private String type;
     private String price;

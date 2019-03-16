@@ -28,21 +28,21 @@ import java.util.List;
 import java.util.Objects;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
+    /**
+     * класс для связки данных и RecycleView
+     */
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
         TextView nameView;
         TextView weightView;
         TextView priceView;
-        String counterOfFragment;
         LinearLayout linearLayout;
 
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         ViewHolder(final View view){
             super(view);
-
             imageView = view.findViewById(R.id.imageForBook);
-
             linearLayout = view.findViewById(R.id.listText);
             nameView = view.findViewById(R.id.nameMain);
             weightView = view.findViewById(R.id.weightMain);
@@ -68,12 +68,14 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final DataAdapter.ViewHolder viewHolder, final int i) {
-        final ForRecycleDish thisDish = dishes.get(i);
+        final ForRecycleDish thisDish = dishes.get(i); // 1 экземпляр блюда со своими полями
+
         viewHolder.nameView.setText(thisDish.getName());
         viewHolder.weightView.setText(thisDish.getWeight());
         viewHolder.priceView.setText(thisDish.getPrice());
 
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+        // установка картинки (загрузка) из firebase
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -95,14 +97,16 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
             }
         });
+
         if(thisDish.getThisMain()) {
-            // обработчик нажатия
+            // обработчик нажатия, который работает только для тех элементов, которые прилшли не из корзины
             viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void onClick(View v) {
                     // открываем активити Dish и передаем туда инфу о том, какой продукт мы открыли (с помощью bandle, например)
                     Intent intent = new Intent(thisDish.getContext(), Dish.class);
+                    // передаем все необходимые значения дальше
                     intent.putExtra("name", thisDish.getName());
                     intent.putExtra("price", thisDish.getPrice());
                     intent.putExtra("type", thisDish.getType());

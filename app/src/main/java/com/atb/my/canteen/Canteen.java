@@ -19,18 +19,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import static java.security.AccessController.getContext;
 
 public class Canteen extends AppCompatActivity {
+    /**
+     * класс для отображения меню
+     */
 
     private String canteen;
     private String numberOfDay;
 
     private ProgressBar progressBar;
 
-    private String[] arrayOfTypeOfDishes = {"Каши", "Супы", "Второе"};
+    private String[] arrayOfTypeOfDishes = {"Каши", "Супы", "Второе"}; // блюда сортировки
     private RecyclerView recyclerView;
     private Spinner spinnerTypeOfDishes;
     private String selectedDish;
@@ -42,8 +42,8 @@ public class Canteen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canteen);
 
-        canteen = getIntent().getStringExtra("Сanteen");
-        numberOfDay = getIntent().getStringExtra("Day");
+        canteen = getIntent().getStringExtra("Сanteen"); // получаем номер столовой (под таким же номером хранится инфа в бд)
+        numberOfDay = getIntent().getStringExtra("Day"); // получаем номер дня, который выбрал пользователь
 
         spinnerTypeOfDishes = findViewById(R.id.spinnerSubject);
         recyclerView = findViewById(R.id.list);
@@ -59,9 +59,9 @@ public class Canteen extends AppCompatActivity {
         AdapterView.OnItemSelectedListener itemSelectedListenerForClass = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                progressBar.setVisibility(ProgressBar.VISIBLE);
-                selectedDish = (String)parent.getItemAtPosition(position);
-                sorting();
+                progressBar.setVisibility(ProgressBar.VISIBLE); // ставим прогресбар
+                selectedDish = (String)parent.getItemAtPosition(position); // получаем значение спинера
+                sorting(); // сортировка (отображение блюд отсортированных по типу)
             }
 
             @Override
@@ -79,9 +79,9 @@ public class Canteen extends AppCompatActivity {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                progressBar.setVisibility(ProgressBar.INVISIBLE);
+                progressBar.setVisibility(ProgressBar.INVISIBLE); // бд загрузилась, а значит убираем прогресбар
                 dishes = new ArrayList<>();
-                // заменям дни с цифр на буквы
+                // заменям дни с цифр на буквы (именно под такими днями бляюда записаны в бд)
                 String thisDay = "Mon";
                 int nuberOfDayInt = Integer.parseInt(numberOfDay);
                 if(nuberOfDayInt == 1){
@@ -98,18 +98,18 @@ public class Canteen extends AppCompatActivity {
                     thisDay = "Sat";
                 }
 
-
-                String counterString = dataSnapshot.child(canteen).child(thisDay).child(selectedDish).child("counter").getValue(String.class);
+                String counterString = dataSnapshot.child(canteen).child(thisDay).child(selectedDish).child("counter").getValue(String.class); // количество блюд (нужно для цикла)
                 int counterInt = 0;
                 if(counterString!=null) {
                     counterInt = Integer.parseInt(counterString);
                     counterInt++;
                 }
                 else {
-                    Toast.makeText(Canteen.this, "Ошибка на стороне сервера. Вероятнее всего, такого блюда нет", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Canteen.this, "Ошибка на стороне сервера. Вероятнее всего, такого типа блюд нет", Toast.LENGTH_SHORT).show();
                 }
 
                 for(int i = 0; i < counterInt; i++){
+                    // получаем все значения и создаем новый элемент списка, который затем будет отдан для RecycleView
                     String name = dataSnapshot.child(canteen).child(thisDay).child(selectedDish).child(Integer.toString(i)).child("Name").getValue(String.class);
                     String price = dataSnapshot.child(canteen).child(thisDay).child(selectedDish).child(Integer.toString(i)).child("Price").getValue(String.class);
                     String type = dataSnapshot.child(canteen).child(thisDay).child(selectedDish).child(Integer.toString(i)).child("Type").getValue(String.class);
@@ -121,13 +121,13 @@ public class Canteen extends AppCompatActivity {
                             name, type, price, weight, canteen+"/" + thisDay + "/" + selectedDish + "/" + Integer.toString(i),
                             calorie, mTrients, pictures, i, true));
                 }
-
+                // обновляем UI
                 updateUI();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            // тут можно обработать ошибки с сервера
             }
         });
 

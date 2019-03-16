@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // выбор столовой (или корзины)
         Button hs1 = findViewById(R.id.button8);
         hs1.setOnClickListener(new View.OnClickListener() {
             @Override

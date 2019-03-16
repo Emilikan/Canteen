@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,18 +14,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
-
 public class Dish extends AppCompatActivity {
+    /**
+     * класс для активити с более подробным описанием блюд
+     */
     private ImageView imageView;
     private TextView name;
     private TextView type;
@@ -54,6 +51,7 @@ public class Dish extends AppCompatActivity {
         mTrients = findViewById(R.id.textView5);
         price = findViewById(R.id.textView6);
 
+        // установка значение в textView (значения приходят из класса DataAdapter)
         name.setText(getIntent().getStringExtra("name"));
         type.setText(getIntent().getStringExtra("type"));
         weight.setText(getIntent().getStringExtra("weight"));
@@ -62,16 +60,19 @@ public class Dish extends AppCompatActivity {
         price.setText(getIntent().getStringExtra("price"));
         allPath = getIntent().getStringExtra("allPath");
 
+        // загрузка фотографии
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(getIntent().getStringExtra("picture"));
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                //progressBar.setVisibility(ProgressBar.INVISIBLE);
+
                 Picasso.with(Dish.this).load(uri).into(imageView);
             }
         });
 
+        // кнопка добавления товара в корзину
+        // значения хранятся в SharedPreference. ID создается следующим образом: пишется слово product_ и добавляется порядковый номер
         Button buy = findViewById(R.id.button11);
         buy.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -101,7 +102,6 @@ public class Dish extends AppCompatActivity {
                 }
 
                 Toast.makeText(Dish.this, "Блюдо добавлено в корзину", Toast.LENGTH_SHORT).show();
-                // добавление в корзину
             }
         });
     }
