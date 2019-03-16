@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,7 +32,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
         ImageView imageView;
         TextView nameView;
-        TextView typeView;
         TextView weightView;
         TextView priceView;
         String counterOfFragment;
@@ -71,7 +69,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final DataAdapter.ViewHolder viewHolder, final int i) {
         final ForRecycleDish thisDish = dishes.get(i);
-        viewHolder.counterOfFragment = thisDish.getArrayList().get(i) + "";
         viewHolder.nameView.setText(thisDish.getName());
         viewHolder.weightView.setText(thisDish.getWeight());
         viewHolder.priceView.setText(thisDish.getPrice());
@@ -98,25 +95,26 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
             }
         });
-
-
-        // обработчик нажатия
-        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                // открываем активити Dish и передаем туда инфу о том, какой продукт мы открыли (с помощью bandle, например)
-                Intent intent = new Intent(thisDish.getContext(), Dish.class);
-                intent.putExtra("name", thisDish.getName());
-                intent.putExtra("price", thisDish.getPrice());
-                intent.putExtra("type", thisDish.getType());
-                intent.putExtra("weight", thisDish.getWeight());
-                intent.putExtra("calorie", thisDish.getCalorie());
-                intent.putExtra("mTrients", thisDish.getmTrients());
-                intent.putExtra("picture", thisDish.getPicture());
-                thisDish.getContext().startActivity(intent);
-            }
-        });
+        if(thisDish.getThisMain()) {
+            // обработчик нажатия
+            viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                @Override
+                public void onClick(View v) {
+                    // открываем активити Dish и передаем туда инфу о том, какой продукт мы открыли (с помощью bandle, например)
+                    Intent intent = new Intent(thisDish.getContext(), Dish.class);
+                    intent.putExtra("name", thisDish.getName());
+                    intent.putExtra("price", thisDish.getPrice());
+                    intent.putExtra("type", thisDish.getType());
+                    intent.putExtra("weight", thisDish.getWeight());
+                    intent.putExtra("calorie", thisDish.getCalorie());
+                    intent.putExtra("mTrients", thisDish.getmTrients());
+                    intent.putExtra("picture", thisDish.getPicture());
+                    intent.putExtra("allPath", thisDish.getAllPath());
+                    thisDish.getContext().startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override

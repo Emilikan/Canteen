@@ -13,22 +13,26 @@ public class ForRecycleDish {
     private String picture;
     private Context context;
     private String allPath;
-    private ArrayList<Integer> arrayList;
     private String calorie;
     private String mTrients;
+    private Boolean isThisMain;
 
-    ForRecycleDish(Context context, String name, String type, String price, String weight, String allPath, String calorie, String mTrients, ArrayList<Integer> arrayList, String picture, int number){
+    ForRecycleDish(Context context, String name, String type, String price, String weight, String allPath, String calorie, String mTrients, String picture, int number, Boolean isThisMain){
         this.context = context;
         this.name = name;
+        this.isThisMain = isThisMain;
         this.type = type;
         this.price = price;
         this.weight = weight;
         this.picture = picture;
         this.number = number;
-        this.arrayList = arrayList;
         this.allPath = allPath;
         this.calorie = calorie;
         this.mTrients = mTrients;
+    }
+
+    public Boolean getThisMain() {
+        return isThisMain;
     }
 
     public int getNumber() {
@@ -65,10 +69,6 @@ public class ForRecycleDish {
 
     public String getAllPath() {
         return allPath;
-    }
-
-    public ArrayList<Integer> getArrayList() {
-        return arrayList;
     }
 
     public Context getContext() {

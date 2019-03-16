@@ -1,13 +1,18 @@
 package com.atb.my.canteen;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +34,8 @@ public class Dish extends AppCompatActivity {
     private TextView calorie;
     private TextView mTrients;
     private TextView price;
+
+    private String allPath;
 
     private DatabaseReference mRef;
 
@@ -53,6 +60,7 @@ public class Dish extends AppCompatActivity {
         calorie.setText(getIntent().getStringExtra("calorie"));
         mTrients.setText(getIntent().getStringExtra("mTrients"));
         price.setText(getIntent().getStringExtra("price"));
+        allPath = getIntent().getStringExtra("allPath");
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl(getIntent().getStringExtra("picture"));
@@ -66,8 +74,33 @@ public class Dish extends AppCompatActivity {
 
         Button buy = findViewById(R.id.button11);
         buy.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Dish.this);
+                SharedPreferences.Editor editor = preferences.edit();
+                int thisCounter = -2;
+                try {
+                    if(preferences.getString("counterOfProducts", "-2") != null) {
+                        thisCounter = Integer.parseInt(preferences.getString("counterOfProducts", "-2"));
+                    }
+                } catch (Exception e){
+                    editor.putString("counterOfProducts", "0");
+                    editor.apply();
+                }
+
+                if (thisCounter == -2){
+                    editor.putString("counterOfProducts", "1");
+                    editor.putString("product_" + 1, allPath);
+                    editor.apply();
+                } else {
+                    thisCounter++;
+                    editor.putString("product_" + thisCounter, allPath);
+                    editor.putString("counterOfProducts", thisCounter + "");
+                    editor.apply();
+                }
+
+                Toast.makeText(Dish.this, "Блюдо добавлено в корзину", Toast.LENGTH_SHORT).show();
                 // добавление в корзину
             }
         });

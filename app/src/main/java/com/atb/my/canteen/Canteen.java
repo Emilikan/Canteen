@@ -30,7 +30,7 @@ public class Canteen extends AppCompatActivity {
 
     private ProgressBar progressBar;
 
-    private String[] arrayOfTypeOfDishes = {"Каши", "Супы"};
+    private String[] arrayOfTypeOfDishes = {"Каши", "Супы", "Второе"};
     private RecyclerView recyclerView;
     private Spinner spinnerTypeOfDishes;
     private String selectedDish;
@@ -70,7 +70,6 @@ public class Canteen extends AppCompatActivity {
             }
         };
         spinnerTypeOfDishes.setOnItemSelectedListener(itemSelectedListenerForClass);
-        //dishes.add(new ForRecycleDish(this,"Манка", "Каша", "340p", "250г", realIdOfBook, 45, 45));
     }
 
 
@@ -120,8 +119,7 @@ public class Canteen extends AppCompatActivity {
                     String mTrients = dataSnapshot.child(canteen).child(thisDay).child(selectedDish).child(Integer.toString(i)).child("MTrients").getValue(String.class);
                     dishes.add(new ForRecycleDish(Canteen.this,
                             name, type, price, weight, canteen+"/" + thisDay + "/" + selectedDish + "/" + Integer.toString(i),
-                            calorie, mTrients,
-                            realIdOfBook, pictures, i));
+                            calorie, mTrients, pictures, i, true));
                 }
 
                 updateUI();
