@@ -3,16 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/background_of_app"
     android:layout_height="match_parent"
     tools:context=".HS">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="38dp">
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_light"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="40dp"
             android:text="Понедельник"
             tools:layout_editor_absoluteX="210dp"
             tools:layout_editor_absoluteY="157dp" />
@@ -20,31 +28,41 @@
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
+            android:layout_marginBottom="20dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_light"
             android:text="Вторник" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
+            android:layout_marginBottom="20dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_light"
             android:text="Среда" />
 
         <Button
             android:id="@+id/button5"
             android:layout_width="match_parent"
+            android:layout_marginBottom="20dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_light"
             android:text="Четверг" />
 
         <Button
             android:id="@+id/button6"
             android:layout_width="match_parent"
+            android:layout_marginBottom="20dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_light"
             android:text="Пятница" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_light"
             android:text="Суббота" />
     </LinearLayout>
 
