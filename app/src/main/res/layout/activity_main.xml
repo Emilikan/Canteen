@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_of_app"
     tools:context=".MainActivity">
 
 
@@ -15,25 +16,33 @@
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
+            android:background="@drawable/button_light"
+            android:layout_marginTop="40dp"
             android:layout_height="wrap_content"
             android:text="Корзина" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="match_parent"
+            android:background="@drawable/button_light"
+            android:layout_marginTop="40dp"
             android:layout_height="wrap_content"
             android:text="Столовая МГТУ имени Бумана" />
 
         <Button
             android:id="@+id/button9"
             android:layout_width="match_parent"
+            android:background="@drawable/button_light"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:text="Столовая МФТИ" />
 
         <Button
             android:id="@+id/button10"
             android:layout_width="match_parent"
+            android:background="@drawable/button_light"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:text="Столовая НИЯУ МИФИ" />
 
     </LinearLayout>

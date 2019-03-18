@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/background_of_app"
     android:layout_height="match_parent"
     tools:context=".Canteen">
     <FrameLayout
@@ -14,6 +15,7 @@
             android:id="@+id/progressBarInDownload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_light"
             android:visibility="visible" />
     </FrameLayout>
     <LinearLayout
