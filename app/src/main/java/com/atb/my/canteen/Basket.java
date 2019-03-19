@@ -147,6 +147,6 @@ public class Basket extends AppCompatActivity {
         DataAdapter adapter = new DataAdapter(this, dishes);
         recyclerView.setAdapter(adapter);
         // устанавливаем текст в TextView
-        endOfPrice.setText("Итого: " + sumOfDishes);
+        endOfPrice.setText("Итого: " + sumOfDishes + " руб");
     }
 }
