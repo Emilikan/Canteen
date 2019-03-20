@@ -108,7 +108,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
                     Intent intent = new Intent(thisDish.getContext(), Dish.class);
                     // передаем все необходимые значения дальше
                     intent.putExtra("name", thisDish.getName());
-                    intent.putExtra("price", thisDish.getPrice());
+                    intent.putExtra("price", thisDish.getPrice() + "руб" );
                     intent.putExtra("type", thisDish.getType());
                     intent.putExtra("weight", thisDish.getWeight());
                     intent.putExtra("calorie", thisDish.getCalorie());

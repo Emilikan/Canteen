@@ -24,7 +24,7 @@ public class ForRecycleDish {
         this.name = name;
         this.isThisMain = isThisMain;
         this.type = type;
-        this.price = price;
+        this.price = price + "руб";
         this.weight = weight;
         this.picture = picture;
         this.number = number;
